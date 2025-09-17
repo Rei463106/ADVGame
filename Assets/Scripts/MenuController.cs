@@ -17,11 +17,15 @@ public class MenuController : MonoBehaviour
     }
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.Escape))
-        {
+        // ‰ï˜b’†‚Íƒƒjƒ…[‹Ö~
+        if (Talking.IsInConversation)
+            return;
 
+        if (Input.GetKeyDown(KeyCode.X))
+        {
             MenuResume();
         }
+       
     }
 
     void MenuResume()

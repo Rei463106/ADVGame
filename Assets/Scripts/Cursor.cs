@@ -99,13 +99,16 @@ public class Cursor : MonoBehaviour
         if (string.IsNullOrEmpty(itemName)) return;
 
         // 効果発動
-        if (itemName == "Yakusou")
+        if (itemName == "Key")
         {
-            Debug.Log("薬草の効果発動！");
+            Debug.Log("カギの効果発動！");
+            PlayerFlag.leftdoor = 1;
         }
-        else if (itemName == "Hammer")
+        else if (itemName == "FireProtein"||itemName== "AquaProtein")
         {
-            Debug.Log("ハンマーの効果発動！");
+            Debug.Log("プロテインの効果発動！");
+            PlayerFlag.goal++;
+            MacchoTalking.talker = 1;
         }
 
         // 使ったスロットを空にして下に詰める

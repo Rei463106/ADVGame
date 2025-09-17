@@ -206,9 +206,9 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 711733846}
-        m_TargetAssemblyTypeName: SceneLoading2, Assembly-CSharp
-        m_MethodName: SceneChange
-        m_Mode: 5
+        m_TargetAssemblyTypeName: SceneLoader, Assembly-CSharp
+        m_MethodName: LoadScene
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -296,9 +296,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 711733843}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3e51d6018bd001545bda5d31bb6b03ff, type: 3}
+  m_Script: {fileID: 11500000, guid: 418eccd07d238d64ca125c0ebb26b92e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  m_sceneNameToBeLoaded: Scene_Middle
+  m_fadePanel: {fileID: 0}
+  m_fadeSpeed: 1
 --- !u!1 &1325498152
 GameObject:
   m_ObjectHideFlags: 0

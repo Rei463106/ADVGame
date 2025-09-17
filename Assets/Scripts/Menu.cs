@@ -5,12 +5,14 @@ public class Menu : MonoBehaviour
     MenuController _controller = default;
     BoxHyouji _boxHyouji = default;
     Cursor _cursor = default;
+    Talking _talking;
 
     private void Awake()
     {
         _controller = GameObject.FindObjectOfType<MenuController>();
         _boxHyouji = GameObject.FindObjectOfType<BoxHyouji>();
         _cursor = GameObject.FindObjectOfType<Cursor>();
+        _talking = GameObject.FindObjectOfType<Talking>();
 
         for (int i = 0; i < _boxHyouji._menuBox.Length; i++)
         {
@@ -39,10 +41,12 @@ public class Menu : MonoBehaviour
         if (isPause)
         {
             Pause();
+            _talking.Savepower();
         }
         else
         {
             Resume();
+            _talking.Loadpower();
         }
     }
 
@@ -54,6 +58,7 @@ public class Menu : MonoBehaviour
         //画像を表示するための計算を別のスクリプトで行う！！
 
         _boxHyouji.Hyouji();
+
     }
     public void Resume()
     {

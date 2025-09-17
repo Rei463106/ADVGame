@@ -17,11 +17,7 @@ public class PlayerMove : MonoBehaviour
 
     void Update()
     {
-        if (collidedObjectName == "Green" && Input.GetKeyDown(KeyCode.UpArrow))
-        {
-            Debug.Log("è„ÉLÅ[Ç™âüÇ≥ÇÍÇ‹ÇµÇΩÅB");
-            _talking.Message();
-        }
+       
     }
 
     private void FixedUpdate()
@@ -37,9 +33,11 @@ public class PlayerMove : MonoBehaviour
         rb.velocity = move;
     }
 
-    private void OnTriggerEnter2D(Collider2D collision)
+    
+
+    private void OnCollisionEnter2D(Collision2D collision)
     {
         collidedObjectName = collision.gameObject.name;
-        Debug.Log("Enter!");
+           Debug.Log("Enter!");
     }
 }
