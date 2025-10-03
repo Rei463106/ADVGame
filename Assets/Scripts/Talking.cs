@@ -1,43 +1,54 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using UnityEngine.UI;
 
 public class Talking : MonoBehaviour
 {
-   
 
-    [Header("TextBox‚Ì•\¦—p")]
+
+    [Header("TextBoxã®è¡¨ç¤ºç”¨")]
     public Image TextImage;
-    [Header("Text‚Ì•\¦—p‚»‚Ì‚P")]
+    [Header("Textã®è¡¨ç¤ºç”¨ãã®ï¼‘")]
     public Text GreenText;
-    [Header("ŠçƒOƒ‰‚Ì•\¦—p")]
+    [Header("é¡”ã‚°ãƒ©ã®è¡¨ç¤ºç”¨")]
     public Image Kaogura;
-    [Header("‰ï˜b‚µ‚Ä‚¢‚È‚¢—p")]
+    [Header("ä¼šè©±ã—ã¦ã„ãªã„æ™‚ç”¨")]
     public Image NoImage;
-    [Header("’Êí‚ÌŠç‚Ì•\¦—p")]
+    [Header("é€šå¸¸ã®é¡”ã®è¡¨ç¤ºç”¨")]
     public Image NormalKao;
-    [Header("¢˜fŠç‚Ì•\¦—p")]
+    [Header("å›°æƒ‘é¡”ã®è¡¨ç¤ºç”¨")]
     public Image KonwakuKao;
-    //PlayerMove‚ğg‚¢‚½‚¢
+    [Header("ã‚«ã‚®è¡¨ç¤ºç”¨")]
+    public Image KeyKao;
+    [Header("ãƒ•ã‚¡ã‚¤ã‚¢ãƒ¼è¡¨ç¤ºç”¨")]
+    public Image FireKao;
+    [Header("ã‚¢ã‚¯ã‚¢è¡¨ç¤ºç”¨")]
+    public Image AquaKao;
+    [Header("ãƒãƒƒãƒãƒ§è¡¨ç¤ºç”¨")]
+    public Image MacchoKao;
+    [Header("ãƒãƒƒãƒãƒ§ãŸã‚“ã“ã¶è¡¨ç¤ºç”¨")]
+    public Image TankobuKao;
+
+    //PlayerMoveã‚’ä½¿ã„ãŸã„
     [SerializeField] public ImageState _state;
 
 
     PlayerMove _playermove;
 
-  
 
 
-  
 
-    //ƒvƒŒƒCƒ„[‚ÌƒXƒs[ƒh•Û‘¶—p
+
+
+    //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®ã‚¹ãƒ”ãƒ¼ãƒ‰ä¿å­˜ç”¨
     float _savespeed;
 
-    //ƒvƒŒƒCƒ„[‚Ì‘¬“x•Û‘¶—p
+    //ãƒ—ãƒ¬ã‚¤ãƒ¤ãƒ¼ã®é€Ÿåº¦ä¿å­˜ç”¨
     Vector2 _velospeed;
 
     SceneStartHandler _sceneHand;
 
 
-    //ESCƒL[‚ğ‰Ÿ‚¹‚È‚­‚·‚é
+    //ESCã‚­ãƒ¼ã‚’æŠ¼ã›ãªãã™ã‚‹
     public static bool IsInConversation = false;
 
 
@@ -45,10 +56,10 @@ public class Talking : MonoBehaviour
 
     void Start()
     {
-      
 
-      
-       
+
+
+
         TextImage.enabled = false;
         GreenText.enabled = false;
         Kaogura.enabled = false;
@@ -60,12 +71,17 @@ public class Talking : MonoBehaviour
 
     void Update()
     {
-        // ‚Ü‚¸‘S•””ñ•\¦‚É‚·‚é
+        // ã¾ãšå…¨éƒ¨éè¡¨ç¤ºã«ã™ã‚‹
         NormalKao.enabled = false;
         KonwakuKao.enabled = false;
         NoImage.enabled = false;
+        KeyKao.enabled = false;
+        FireKao.enabled = false;
+        AquaKao.enabled = false;
+        MacchoKao.enabled = false;
+        TankobuKao.enabled = false;
 
-        // ó‘Ô‚É‰‚¶‚Ä•\¦
+        // çŠ¶æ…‹ã«å¿œã˜ã¦è¡¨ç¤º
         switch (_state)
         {
             case ImageState.None:
@@ -77,13 +93,29 @@ public class Talking : MonoBehaviour
             case ImageState.Konwaku:
                 KonwakuKao.enabled = true;
                 break;
+            case ImageState.Keye:
+                KeyKao.enabled = true;
+                break;
+            case ImageState.Aqua:
+                AquaKao.enabled = true;
+                break;
+            case ImageState.Fire:
+                FireKao.enabled = true;
+                break;
+            case ImageState.Maccho:
+                MacchoKao.enabled = true;
+                break;
+            case ImageState.Tankobu:
+                TankobuKao.enabled = true;
+                break;
+
         }
 
     }
 
-   
 
-  
+
+
 
     public void Savepower()
     {
@@ -103,11 +135,29 @@ public class Talking : MonoBehaviour
 
     public enum ImageState
     {
-        //‰ï˜b‚È‚µ
+        //ä¼šè©±ãªã—
         None,
-        //’Êí
+        //é€šå¸¸
         Normal,
-        //¢˜f
+        //å›°æƒ‘
         Konwaku,
+        //ã‚«ã‚®
+        Keye,
+        //ç«ã®ãƒ—ãƒ­ãƒ†ã‚¤ãƒ³
+        Fire,
+        //æ°´ã®ãƒ—ãƒ­ãƒ†ã‚¤ãƒ³
+        Aqua,
+        //ãƒãƒƒãƒãƒ§ãƒ¡ãƒ³
+        Maccho,
+        //ãŸã‚“ã“ã¶ãƒãƒ³
+        Tankobu
     }
+
+    //å…¨ã¦ã‚’å…ƒã«æˆ»ã™
+   
+
 }
+
+
+
+

@@ -1,16 +1,16 @@
-using UnityEngine;
-using UnityEngine.UI;      // UI ‚ğ‘€ì‚·‚é‚½‚ß‚É’Ç‰Á‚µ‚Ä‚¢‚é
-using UnityEngine.SceneManagement;  // ƒV[ƒ“‘JˆÚ‚ğs‚¤‚½‚ß‚É’Ç‰Á‚µ‚Ä‚¢‚é
+ï»¿using UnityEngine;
+using UnityEngine.UI;      // UI ã‚’æ“ä½œã™ã‚‹ãŸã‚ã«è¿½åŠ ã—ã¦ã„ã‚‹
+using UnityEngine.SceneManagement;  // ã‚·ãƒ¼ãƒ³é·ç§»ã‚’è¡Œã†ãŸã‚ã«è¿½åŠ ã—ã¦ã„ã‚‹
 
 public class SceneLoader : MonoBehaviour
 {
-    /// <summary>ƒ[ƒh‚·‚éƒV[ƒ“–¼</summary>
+    /// <summary>ãƒ­ãƒ¼ãƒ‰ã™ã‚‹ã‚·ãƒ¼ãƒ³å</summary>
     [SerializeField] string m_sceneNameToBeLoaded = "SceneNameToBeLoaded";
-    /// <summary>ƒtƒF[ƒh‚·‚é‚½‚ß‚Ìƒ}ƒXƒN‚Æ‚È‚é Panel (Image) ‚ğw’è‚·‚éBƒAƒ‹ƒtƒ@‚ğ 0 ‚É‚µ‚Ä‚¨‚«A•K—v‚È‚ç‚Î Raycast Target ‚ğƒIƒt‚É‚µ‚Ä‚¨‚­‚±‚ÆB</summary>
+    /// <summary>ãƒ•ã‚§ãƒ¼ãƒ‰ã™ã‚‹ãŸã‚ã®ãƒã‚¹ã‚¯ã¨ãªã‚‹ Panel (Image) ã‚’æŒ‡å®šã™ã‚‹ã€‚ã‚¢ãƒ«ãƒ•ã‚¡ã‚’ 0 ã«ã—ã¦ãŠãã€å¿…è¦ãªã‚‰ã° Raycast Target ã‚’ã‚ªãƒ•ã«ã—ã¦ãŠãã“ã¨ã€‚</summary>
     [SerializeField] Image m_fadePanel = null;
-    /// <summary>ƒtƒF[ƒh‚·‚éƒXƒs[ƒh</summary>
+    /// <summary>ãƒ•ã‚§ãƒ¼ãƒ‰ã™ã‚‹ã‚¹ãƒ”ãƒ¼ãƒ‰</summary>
     [SerializeField] float m_fadeSpeed = 1f;
-    /// <summary>ƒ[ƒhŠJnƒtƒ‰ƒO</summary>
+    /// <summary>ãƒ­ãƒ¼ãƒ‰é–‹å§‹ãƒ•ãƒ©ã‚°</summary>
     bool m_isLoadStarted = false;
 
     Talking _talking;
@@ -22,20 +22,20 @@ public class SceneLoader : MonoBehaviour
 
     void Update()
     {
-        // ƒ[ƒh‚ªŠJn‚³‚ê‚½‚ç
+        // ãƒ­ãƒ¼ãƒ‰ãŒé–‹å§‹ã•ã‚ŒãŸã‚‰
         if (m_isLoadStarted)
         {
-            // m_panel ‚ªİ’è‚³‚ê‚Ä‚¢‚½‚çA™X‚ÉƒAƒ‹ƒtƒ@‚ğã‚°‚Ä•s“§–¾‚É‚·‚é
+            // m_panel ãŒè¨­å®šã•ã‚Œã¦ã„ãŸã‚‰ã€å¾ã€…ã«ã‚¢ãƒ«ãƒ•ã‚¡ã‚’ä¸Šã’ã¦ä¸é€æ˜ã«ã™ã‚‹
             if (m_fadePanel)
             {
                 Color panelColor = m_fadePanel.color;
                 panelColor.a += m_fadeSpeed * Time.deltaTime;
                 m_fadePanel.color = panelColor;
 
-                // ‚Ù‚Ú•s“§–¾‚É‚È‚Á‚½‚ç
+                // ã»ã¼ä¸é€æ˜ã«ãªã£ãŸã‚‰
                 if (panelColor.a > 0.99f)
                 {
-                    // ƒV[ƒ“‚ğƒ[ƒh‚·‚é
+                    // ã‚·ãƒ¼ãƒ³ã‚’ãƒ­ãƒ¼ãƒ‰ã™ã‚‹
                     SceneManager.LoadScene(m_sceneNameToBeLoaded);
                     m_isLoadStarted = false;
                     Invoke("_talking.StartMessage()", 2);
@@ -43,7 +43,7 @@ public class SceneLoader : MonoBehaviour
             }
             else
             {
-                // m_panel ‚ªİ’è‚³‚ê‚Ä‚¢‚È‚¢‚ÍA‚·‚®‚ÉƒV[ƒ“‚ğƒ[ƒh‚·‚é
+                // m_panel ãŒè¨­å®šã•ã‚Œã¦ã„ãªã„æ™‚ã¯ã€ã™ãã«ã‚·ãƒ¼ãƒ³ã‚’ãƒ­ãƒ¼ãƒ‰ã™ã‚‹
                 SceneManager.LoadScene(m_sceneNameToBeLoaded);
                 m_isLoadStarted = false;
             }
@@ -51,7 +51,7 @@ public class SceneLoader : MonoBehaviour
     }
 
     /// <summary>
-    /// ƒV[ƒ“‚ğƒ[ƒh‚·‚é
+    /// ã‚·ãƒ¼ãƒ³ã‚’ãƒ­ãƒ¼ãƒ‰ã™ã‚‹
     /// </summary>
     public void LoadScene()
     {
@@ -59,7 +59,7 @@ public class SceneLoader : MonoBehaviour
     }
 
     /// <summary>
-    /// –¼‘O‚ğw’è‚µ‚ÄƒV[ƒ“‚ğƒ[ƒh‚·‚é
+    /// åå‰ã‚’æŒ‡å®šã—ã¦ã‚·ãƒ¼ãƒ³ã‚’ãƒ­ãƒ¼ãƒ‰ã™ã‚‹
     /// </summary>
     /// <param name="sceneName"></param>
     public void LoadScene(string sceneName)

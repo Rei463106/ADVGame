@@ -1,4 +1,4 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class Menu : MonoBehaviour
 {
@@ -6,6 +6,7 @@ public class Menu : MonoBehaviour
     BoxHyouji _boxHyouji = default;
     Cursor _cursor = default;
     Talking _talking;
+    //é–‰ã˜ã¦ã‚‹ã‹é–‹ã„ã¦ã‚‹ã‹åˆ¤æ–­
 
     private void Awake()
     {
@@ -25,7 +26,7 @@ public class Menu : MonoBehaviour
     }
     void OnEnable()
     {
-        //ƒvƒƒpƒeƒB‚Ì‚Æ‚±‚ë‚É‘‚«‚ŞHH
+        //ãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ã®ã¨ã“ã‚ã«æ›¸ãè¾¼ã‚€ï¼Ÿï¼Ÿ
         _controller.OnMenuResume += MenuResume;
     }
 
@@ -34,8 +35,8 @@ public class Menu : MonoBehaviour
         _controller.OnMenuResume -= MenuResume;
     }
 
-    //‚±‚ê‚ğV‚½‚É“o˜^‚µ‚½‚Ì‚ÅA‚±‚±‚Éˆ—‚ğ‘‚­B
-    //‚³‚ç‚É×‚©‚¢ˆ—‚ÍŸ‚Ìƒƒ\ƒbƒh‚ÖB
+    //ã“ã‚Œã‚’æ–°ãŸã«ç™»éŒ²ã—ãŸã®ã§ã€ã“ã“ã«å‡¦ç†ã‚’æ›¸ãã€‚
+    //ã•ã‚‰ã«ç´°ã‹ã„å‡¦ç†ã¯æ¬¡ã®ãƒ¡ã‚½ãƒƒãƒ‰ã¸ã€‚
     void MenuResume(bool isPause)
     {
         if (isPause)
@@ -52,10 +53,10 @@ public class Menu : MonoBehaviour
 
     public void Pause()
     {
-        //ƒƒjƒ…[‚ğŠJ‚­B
-        //‚Æ‚è‚ ‚¦‚¸‰æ‘œ‚ğ•\¦‚³‚¹‚éB
-        Debug.Log("ƒƒjƒ…[‚ğŠJ‚«‚Ü‚µ‚½");
-        //‰æ‘œ‚ğ•\¦‚·‚é‚½‚ß‚ÌŒvZ‚ğ•Ê‚ÌƒXƒNƒŠƒvƒg‚Ås‚¤II
+        //ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’é–‹ãã€‚
+        //ã¨ã‚Šã‚ãˆãšç”»åƒã‚’è¡¨ç¤ºã•ã›ã‚‹ã€‚
+        Debug.Log("ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’é–‹ãã¾ã—ãŸ");
+        //ç”»åƒã‚’è¡¨ç¤ºã™ã‚‹ãŸã‚ã®è¨ˆç®—ã‚’åˆ¥ã®ã‚¹ã‚¯ãƒªãƒ—ãƒˆã§è¡Œã†ï¼ï¼
 
         _boxHyouji.Hyouji();
 
@@ -63,7 +64,7 @@ public class Menu : MonoBehaviour
     public void Resume()
     {
 
-        Debug.Log("ƒƒjƒ…[‚ğ•Â‚¶‚Ü‚µ‚½");
+        Debug.Log("ãƒ¡ãƒ‹ãƒ¥ãƒ¼ã‚’é–‰ã˜ã¾ã—ãŸ");
         _boxHyouji.Hihyouji();
     }
 }

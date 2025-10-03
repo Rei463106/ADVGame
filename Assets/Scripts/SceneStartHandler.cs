@@ -7,7 +7,7 @@ public class SceneStartHandler : MonoBehaviour
     Talking _talking;
     StartTalkAfter _talkingAfter;
 
-    private static bool hasShownStartMessage = false;
+    public static bool hasShownStartMessage = false;
    
 
     void Start()
@@ -37,7 +37,7 @@ public class SceneStartHandler : MonoBehaviour
     public void Syuryou()
     {
         _talking.Loadpower();
-        Destroy(gameObject);
+        this.gameObject.SetActive(false);
     }
 
 

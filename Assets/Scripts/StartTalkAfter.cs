@@ -1,23 +1,25 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 using static Talking;
 
 public class StartTalkAfter : MonoBehaviour
 {
 
     /// <summary>
-    /// ƒGƒ“ƒ^[‚ğ‰Ÿ‚µ‚½‰ñ”
+    /// ã‚¨ãƒ³ã‚¿ãƒ¼ã‚’æŠ¼ã—ãŸå›æ•°
     /// </summary>
     int enter;
 
-    //ƒXƒ^[ƒg‰æ–Ê‚Å‚Ìƒtƒ‰ƒO
+    //ã‚¹ã‚¿ãƒ¼ãƒˆç”»é¢ã§ã®ãƒ•ãƒ©ã‚°
     int startflag;
 
-    //“ñ“x‚Æ“®‚©‚È‚¢‚æ‚¤‚É‚·‚é‚½‚ß‚Ég‚¤
-    private static bool hasShownStartMessage = false;
+    //äºŒåº¦ã¨å‹•ã‹ãªã„ã‚ˆã†ã«ã™ã‚‹ãŸã‚ã«ä½¿ã†
+    public static bool hasShownStartAfterMessage = false;
 
     Talking _talking;
     SceneStartHandler _sceneHandler;
     DoorIdou _doorIdou;
+
+    bool inConversation = false;
 
 
     void Start()
@@ -26,10 +28,10 @@ public class StartTalkAfter : MonoBehaviour
         _sceneHandler = FindAnyObjectByType<SceneStartHandler>();
         _doorIdou = FindAnyObjectByType<DoorIdou>();
 
-        if (!hasShownStartMessage)
+        if (!hasShownStartAfterMessage)
         {
             StartMessage();
-            hasShownStartMessage = true;
+            hasShownStartAfterMessage = true;
         }
         startflag = 0;
         enter = 0;
@@ -43,19 +45,26 @@ public class StartTalkAfter : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        _talking.NormalKao.enabled = false;
-        _talking.KonwakuKao.enabled = false;
+        //if (!inConversation)
+        //{
+        //    _talking.NormalKao.enabled = false;
+        //    _talking.KonwakuKao.enabled = false;
+        //    _talking.MacchoKao.enabled = false;
+        //    _talking.TankobuKao.enabled = false;
 
-        if (startflag == 1 && Input.GetKeyDown(KeyCode.Return))
+        //}
+
+        if (startflag == 1 && Input.GetKeyDown(KeyCode.Z))
         {
             enter++;
             if (enter == 1)
             {
-                _talking.GreenText.text = "Šm‚©„‚Í‚¨‚Â‚©‚¢‚ğ‚µ‚Ä‚¢‚½‚æ‚¤‚È‹C‚ª‚·‚é‚¯‚ÇcB";
+                _talking.GreenText.text = "ç§ã£ã¦ã°ç¾å°‘å¥³ã ã‹ã‚‰ã€èª˜æ‹ã•ã‚ŒãŸã«é•ã„ãªã„ã‚ã­ã€‚";
             }
             else if (enter == 2)
             {
-                _talking.GreenText.text = "‚Æ‚è‚ ‚¦‚¸‚ ‚»‚±‚Å“|‚ê‚Ä‚él‚É‚Å‚à•·‚¢‚Ä‚İ‚é‚©B";
+                _talking.GreenText.text = "â€¦ã¨ã‚Šã‚ãˆãšã€ã‚ã®ãƒãƒƒãƒãƒ§ã«è©±ã—ã‹ã‘ã¦ã¿ã‚ˆã†ã‹ãªã€‚";
+                   
             }
             else if (enter == 3)
             {
@@ -73,23 +82,23 @@ public class StartTalkAfter : MonoBehaviour
 
         }
 
-        //‚±‚±‚©‚çŠçƒOƒ‰‚Ìˆ—
+        //ã“ã“ã‹ã‚‰é¡”ã‚°ãƒ©ã®å‡¦ç†
 
-        // Šç‚ğˆê’U‘S•””ñ•\¦‚É‚·‚é
+        // é¡”ã‚’ä¸€æ—¦å…¨éƒ¨éè¡¨ç¤ºã«ã™ã‚‹
 
-        if (_talking._state == ImageState.None)
-        {
-            _talking.NoImage.enabled = true;
-        }
-        else if (_talking._state == ImageState.Normal)
-        {
-            _talking.NormalKao.enabled = true;
-        }
-        else if (_talking._state == ImageState.Konwaku)
-        {
-            _talking.KonwakuKao.enabled = true;
+        //if (_talking._state == ImageState.None)
+        //{
+        //    _talking.NoImage.enabled = true;
+        //}
+        //else if (_talking._state == ImageState.Normal)
+        //{
+        //    _talking.NormalKao.enabled = true;
+        //}
+        //else if (_talking._state == ImageState.Konwaku)
+        //{
+        //    _talking.KonwakuKao.enabled = true;
 
-        }
+        //}
     }
     public void StartMessage()
     {
@@ -98,7 +107,7 @@ public class StartTalkAfter : MonoBehaviour
         _talking.TextImage.enabled = true;
         _talking.Kaogura.enabled = true;
         _talking._state = ImageState.Normal;
-        _talking.GreenText.text = "cB‚ ‚êH‚±‚±‚Ç‚±H";
+        _talking.GreenText.text = "â€¦ã€‚ã‚“ï¼Ÿã“ã“ã©ã“â€¦ï¼Ÿ";
         startflag = 1;
         IsInConversation = true;
     }

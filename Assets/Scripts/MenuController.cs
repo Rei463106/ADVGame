@@ -1,15 +1,15 @@
-using UnityEngine;
+ï»¿using UnityEngine;
 
 public class MenuController : MonoBehaviour
 {
-    /// <summary> /// true‚Ì‚Íˆê’â~ /// </summary>
+    /// <summary> /// trueã®æ™‚ã¯ä¸€æ™‚åœæ­¢ /// </summary>
     bool _menuFlg = false;
-    /// <summary> /// ˆê’â~EÄŠJ‚ğ§Œä‚·‚é‚½‚ß‚ÌŠÖ”‚ÌŒ^iƒfƒŠƒQ[ƒgj‚ğ’è‹` /// </summary>
+    /// <summary> /// ä¸€æ™‚åœæ­¢ãƒ»å†é–‹ã‚’åˆ¶å¾¡ã™ã‚‹ãŸã‚ã®é–¢æ•°ã®å‹ï¼ˆãƒ‡ãƒªã‚²ãƒ¼ãƒˆï¼‰ã‚’å®šç¾© /// </summary>
     public delegate void Menu(bool isMenu);
-    /// <summary>/// ƒfƒŠƒQ[ƒg‚ğ“ü‚ê‚Ä‚¨‚­‚½‚ß‚Ì•Ï” /// </summary>
+    /// <summary>/// ãƒ‡ãƒªã‚²ãƒ¼ãƒˆã‚’å…¥ã‚Œã¦ãŠããŸã‚ã®å¤‰æ•° /// </summary>
     Menu _omMenuResume = default;
 
-    /// <summary> /// ˆê’â~EÄŠJ‚ğ“ü‚ê‚éƒfƒŠƒQ[ƒgƒvƒƒpƒeƒB /// </summary>
+    /// <summary> /// ä¸€æ™‚åœæ­¢ãƒ»å†é–‹ã‚’å…¥ã‚Œã‚‹ãƒ‡ãƒªã‚²ãƒ¼ãƒˆãƒ—ãƒ­ãƒ‘ãƒ†ã‚£ /// </summary>
     public Menu OnMenuResume
     {
         get { return _omMenuResume; }
@@ -17,7 +17,7 @@ public class MenuController : MonoBehaviour
     }
     void Update()
     {
-        // ‰ï˜b’†‚Íƒƒjƒ…[‹Ö~
+        // ä¼šè©±ä¸­ã¯ãƒ¡ãƒ‹ãƒ¥ãƒ¼ç¦æ­¢
         if (Talking.IsInConversation)
             return;
 
@@ -31,7 +31,9 @@ public class MenuController : MonoBehaviour
     void MenuResume()
     {
         _menuFlg = !_menuFlg;
-        //true‚ÌA‚±‚±‚É“o˜^‚µ‚½‚à‚Ì‚ªŒÄ‚Ño‚³‚ê‚é
+        //trueã®æ™‚ã€ã“ã“ã«ç™»éŒ²ã—ãŸã‚‚ã®ãŒå‘¼ã³å‡ºã•ã‚Œã‚‹
         _omMenuResume(_menuFlg);
     }
+
+  
 }

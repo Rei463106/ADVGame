@@ -7,18 +7,18 @@ public class GoalTalk : MonoBehaviour
     Talking _talking;
     GoalTalkAfter _goalTalkAfter;
 
-    private static bool hasShownStartMessage = false;
+    public static bool hasShownGoalMessage = false;
 
 
     void Start()
     {
         _talking = FindAnyObjectByType<Talking>();
         _goalTalkAfter = FindAnyObjectByType<GoalTalkAfter>();
-        if (!hasShownStartMessage)
+        if (!hasShownGoalMessage)
         {
             // シーンが始まってから2秒後に処理を実行
             StartCoroutine(ExecuteAfterDelay());
-            hasShownStartMessage = true;
+            hasShownGoalMessage = true;
         }
 
 

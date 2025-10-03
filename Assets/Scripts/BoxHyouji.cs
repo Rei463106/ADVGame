@@ -17,11 +17,24 @@ public class BoxHyouji : MonoBehaviour
     [SerializeField] int _boxHeight = 10;
     //下にどのくらい座標をずらすか
     [SerializeField] int _textHeight = 10;
+    //ボックスを表示した時の効果音
+    [SerializeField]AudioClip _audioClip;
 
+    AudioSource _audioSource;
+    public bool IsMenuOpen { get; private set; } = false;
+
+    private void Start()
+    {
+        _audioSource = GetComponent<AudioSource>();
+    }
 
     public void Hyouji()
     {
+        IsMenuOpen = true;
         _menuHaikei.enabled = true;
+        if (_audioClip != null && _audioSource != null)
+            _audioSource.PlayOneShot(_audioClip);
+
 
         // Sceneに置いた0番目の位置を基準にする（anchoredPosition必須！）
         //anchoredPositionにしたらうまく行った…
@@ -46,6 +59,10 @@ public class BoxHyouji : MonoBehaviour
     public void Hihyouji()
     {
         //非表示の際の処理を書く
+         IsMenuOpen = false;
+        if (_audioClip != null && _audioSource != null)
+            _audioSource.PlayOneShot(_audioClip);
+
         for (int i = 0; i < _menuBox.Length; i++)
         {
             _menuBox[i].enabled = false;

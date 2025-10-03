@@ -9,12 +9,23 @@ public class Cursor : MonoBehaviour
     int currentIndex = 0;
     //範囲内に入ったものを検知する
     public string triggers = default;
+    ItemUseMessage _itemUseMessage;
+    Talking _talking;
 
+    [SerializeField] AudioClip _audioClip2;
+
+    [SerializeField] AudioClip _audioClip3;
+
+    [SerializeField] AudioClip _audioClip4;
+
+    AudioSource _audioSource;
 
     private void Awake()
     {
         _controller = GameObject.FindObjectOfType<MenuController>();
         _boxHyouji = GameObject.FindObjectOfType<BoxHyouji>();
+        _itemUseMessage= GameObject.FindObjectOfType<ItemUseMessage>();
+        _talking = GameObject.FindObjectOfType<Talking>();
         _cursorImage.rectTransform.anchoredPosition = _boxHyouji._menuBox[0].rectTransform.anchoredPosition;
 
     }
@@ -32,20 +43,28 @@ public class Cursor : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        _audioSource = GetComponent<AudioSource>();
     }
 
     // Update is called once per frame
     void Update()
     {
+        // 会話中 or アイテム取得メッセージ中は操作禁止
+        if (Talking.IsInConversation)
+        {
+            return;
+        }
+        if (!_boxHyouji.IsMenuOpen) return; // メニューが閉じていれば何もしない
+
         if (Input.GetKeyDown(KeyCode.DownArrow))
         {
-
             Downkey();
+            _audioSource.PlayOneShot(_audioClip2);
         }
         if (Input.GetKeyDown(KeyCode.UpArrow))
         {
             Upkey();
+            _audioSource.PlayOneShot(_audioClip2);
         }
         if (Input.GetKeyDown(KeyCode.Z) && triggers != null)
         {
@@ -53,6 +72,7 @@ public class Cursor : MonoBehaviour
             Debug.Log("押されました");
         }
     }
+
 
     void MenuResume(bool isPause)
     {
@@ -102,13 +122,24 @@ public class Cursor : MonoBehaviour
         if (itemName == "Key")
         {
             Debug.Log("カギの効果発動！");
+            //_boxHyouji.Hihyouji();
+           // _cursorImage.enabled = false;
+           // Talking.IsInConversation = false;
+           // _controller.ForceCloseMenu(); // MenuController側にこの関数を追加
+           // _itemUseMessage.UseItemMessage("Key"); // ← Loadpowerはここで呼ばない
             PlayerFlag.leftdoor = 1;
+            _audioSource.PlayOneShot(_audioClip3);
         }
         else if (itemName == "FireProtein"||itemName== "AquaProtein")
         {
             Debug.Log("プロテインの効果発動！");
+            //_boxHyouji.Hihyouji();
+            //_cursorImage.enabled = false;
+            //_itemUseMessage.UseItemMessage("Protein");
             PlayerFlag.goal++;
             MacchoTalking.talker = 1;
+           
+            _audioSource.PlayOneShot(_audioClip4);
         }
 
         // 使ったスロットを空にして下に詰める
